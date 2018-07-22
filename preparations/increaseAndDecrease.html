@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/myStyle.css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <!--增加列-->
+            $(".colAdd").click(function(){
+                var str = "<td class='col'><textarea ></textarea></td>"
+                $(".tr").append(str);
+            });
+            <!--减少列-->
+            $(".colMinus").click(function(){
+                var table = document.getElementById("table");
+                var rowsLength  = table.rows.length;
+                var colsLength = table.rows[0].cells.length;
+                for(var i = 0;i<rowsLength;i++){
+                    var index = -1-(rowsLength-1-i)*colsLength;
+                    //移除最后一列元素，，
+                    // 因为这里是选种全部的col，而不是每一个tr下的col
+                    $(".col").eq(index).remove();
+                }
+            });
+            <!--增加行-->
+            $(".rowAdd").click(function(){
+                var table = document.getElementById("table");
+                var colsLength = table.rows[0].cells.length;
+
+                var subStr1 = "<tr class=\"tr\">"
+                var subStr2 = "";
+                for(var i = 1;i<=colsLength;i++){
+                    var subStr2_str = "<td class='col'><textarea></textarea></td>";
+                    subStr2 += subStr2_str;
+                }
+                var subStr3 = "</tr>"
+                var str = subStr1+subStr2+subStr3;
+                $(".table").append(str);
+            });
+            <!--减少行-->
+            $(".rowMinus").click(function(){
+                <!--jquery语法，移除匹配元素中的最后一个元素-->
+                $(".tr").eq(-1).remove();
+            });
+        });
+    </script>
+
+    <table border="0" width="100%" align="center">
+        <tr align="center">
+            <td width="25%"><button class="colAdd" type="button">列+1</button></td>
+            <td width="25%"><button class="colMinus" type="button">列-1</button></td>
+            <td width="25%"><button class="rowAdd" type="button">行+1</button></td>
+            <td width="25%"><button class="rowMinus" type="button">行-1</button></td>
+        </tr>
+    </table>
+    <br>
+    <table width="80%" border="1"  align="center" class="table" id="table">
+        <tbody>
+        <tr class="tr" align="center">
+            <td class='col'><textarea></textarea></td>
+            <td class='col'><textarea></textarea></td>
+        </tr>
+        <tr class="tr" align="center">
+            <td class='col'><textarea></textarea></td>
+            <td class='col'><textarea></textarea></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table width="50%" border="0"  align="center" class="">
+        <tbody>
+        <tr align="center">
+            <td width="50%"><button type="reset" >重置</button></td>
+            <td width="50%"><button type="button" onclick="onSubmit()">提交</button></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
