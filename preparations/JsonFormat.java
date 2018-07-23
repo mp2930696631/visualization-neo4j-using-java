@@ -13,8 +13,8 @@ public class JsonFormat {
 
     public static void getDriver(){
         String uri = "Bolt://localhost:7687";
-        String user = "neo4j";//写你自己的neo4j的用户名
-        String password = "ccc561115";//写你自己的neo4j的密码
+        String user = "";//写你自己的neo4j的用户名
+        String password = "";//写你自己的neo4j的密码
         driver = GraphDatabase.driver(uri, AuthTokens.basic(user,password));
     }
 
