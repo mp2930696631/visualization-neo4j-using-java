@@ -14,8 +14,8 @@ public class Neo4jRestAPI {
 
     public static void getDriver(){
         String uri = "Bolt://localhost:7687";
-        String user = "neo4j";
-        String password = "ccc561115";
+        String user = "";//这里写自己neo4j的用户名
+        String password = "";//这里写自己neo4j的密码
         driver = GraphDatabase.driver(uri, AuthTokens.basic(user,password));
     }
     public static void close(){
